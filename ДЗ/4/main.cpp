@@ -37,10 +37,9 @@ void task3()
     std::cout << std::endl << "Task 3: " << std::endl;
 
     std::cout << "Your numbers: ";
-    for(int i = 1; i < 51; ++i)
+    for(int i = 1; i =< 50; i+=2)
     {
-        if(i % 2 != 0)
-            std::cout << i << " ";
+        std::cout << i << " ";
     }
 }
 
