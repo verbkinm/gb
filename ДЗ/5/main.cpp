@@ -104,10 +104,12 @@ void shiftArr(int *arr, size_t SIZE, int value)
 {
     void (*directionShift)(int*, size_t);
 
-    if(value > 0)
-        directionShift = shiftRight;
-    else if(value < 0)
-        directionShift = shiftLeft;
+    directionShift = (value > 0) ? shiftRight : shiftLeft;
+
+//    if(value > 0)
+//        directionShift = shiftRight;
+//    else if(value < 0)
+//        directionShift = shiftLeft;
 
     value = abs(value) % SIZE;
 
