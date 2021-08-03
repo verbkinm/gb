@@ -156,9 +156,6 @@ bool checkBalance(int *arr, size_t SIZE)
 
 int sumArrayTo(int *arr, size_t SIZE, size_t sumTo)
 {
-    if(sumTo > SIZE - 1)
-        sumTo = SIZE - 1;
-
     int sum = 0;
 
     for (size_t i = 0; i < sumTo; ++i)
@@ -169,9 +166,6 @@ int sumArrayTo(int *arr, size_t SIZE, size_t sumTo)
 
 int sumArrayFrom(int *arr, size_t SIZE, size_t sumFrom)
 {
-    if(sumFrom >= SIZE)
-        sumFrom = SIZE;
-
     int sum = 0;
 
     for (size_t i = sumFrom; i < SIZE; ++i)
