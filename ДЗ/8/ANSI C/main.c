@@ -20,12 +20,18 @@ char moveCount = 0;
 char undoCell = 0;
 
 void banner(void);
-void printField(void);
+void enterPressWait(void);
+
 void playersVictories(void);
 void playerMove(void);
+
+void printField(void);
 void printCommandName(void);
+void printDataGame(void);
+
 void consoleClear(void);
 char readCommand(void);
+void undo(void);
 
 void restartGame(void);
 void restartField(void);
@@ -34,10 +40,6 @@ void checkField(void);
 int checkRow(char *arr);
 int checkColumn(char *arr);
 int checkDiagonal(char *arr);
-
-void printDataGame(void);
-void undo(void);
-void enterPressWait(void);
 
 int main()
 {
