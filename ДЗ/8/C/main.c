@@ -3,12 +3,8 @@
 #include <time.h>
 #include <string.h>
 
-#ifdef _WIN32
 #include <conio.h>
 #include <windows.h>
-#else
-
-#endif
 
 const char _X = 'X';
 const char _0 = '0';
@@ -132,14 +128,16 @@ void printField(void)
 
 void playersVictories(void)
 {
-    printf(" %s (X) victories: %d\n", playerName[0], player1Vic);
-    printf(" %s (0) victories: %d\n\n", playerName[1], player2Vic);
+    printf(" %s (X) victories: %d\n"
+           " %s (0) victories: %d\n\n",
+           playerName[0], player1Vic, playerName[1], player2Vic);
 }
 
 void playerMove(void)
 {
-    printf(" Move number %d: \n", moveCount + 1);
-    printf(" Player \"%s\" move now.\n\n", playerName[(int)playerNumberMove]);
+    printf(" Move number %d: \n"
+           " Player \"%s\" move now.\n\n",
+           moveCount + 1, playerName[(int)playerNumberMove]);
 }
 
 void printCommandName(void)
@@ -157,32 +155,33 @@ void printCommandName(void)
 void consoleClear(void)
 {
     setCursorPos(0,0);
+
     char arr[40];
     memset(arr, ' ', 38);
     arr[38] = '\n';
     arr[39] = '\0';
+
     for(int i = 2; i <= 30; i++)
-    {
         printf("%s", arr);
-    }
+
     setCursorPos(0,0);
 }
 
 char readCommand(void)
 {
-    char inputCommand = '\0';
+    char input = 0;
 
     if(mode == PC)
     {
         if(playerNumberMove == 1)
-            inputCommand = getch();
+            input = getch();
         else
-            inputCommand = AI_Move();
+            input = AI_Move();
     }
     else if(mode == HUMAN)
-        inputCommand = getch();
+        input = getch();
 
-    switch (inputCommand)
+    switch (input)
     {
     case 'e':
         break;
@@ -192,14 +191,15 @@ char readCommand(void)
     case 'h':
         if(mode == PC)
             printf(" Difficulty level: %d\n", level + 1);
+
         printf("\t 7 | 8 | 9\n"
                "\t-----------\n"
                "\t 4 | 5 | 6\n"
                "\t-----------\n"
-               "\t 1 | 2 | 3\n\n"
-               " (Press Enter)");
+               "\t 1 | 2 | 3\n\n");
         enterPressWait();
         break;
+
     case 'u':
         undo();
         break;
@@ -212,12 +212,12 @@ char readCommand(void)
     case '7':
     case '8':
     case '9':
-        undoCell = inputCommand;
-        const int index = (inputCommand - '0') - 1;
+        undoCell = input;
+        const int index = (input - '0') - 1;
 
         if(field[index] == _0 || field[index] == _X)
         {
-            printf(" Cell %d is not empty! (Press Enter)", index + 1);
+            printf(" Cell %d is not empty!", index + 1);
             enterPressWait();
             break;
         }
@@ -230,13 +230,14 @@ char readCommand(void)
         playerNumberMove ^= 1;
         moveCount++;
         break;
+
     default:
-        printf(" Incorrect input: '%c'. (Press Enter)\n", inputCommand);
+        printf(" Incorrect input: '%c'.", input);
         enterPressWait();
         break;
     }
 
-    return inputCommand;
+    return input;
 }
 
 void restartGame(void)
@@ -254,9 +255,6 @@ void restartField(void)
     undoCell = 0;
 
     memset(field, ' ', 9);
-    // ASCII 49 - '0' 57 - '9'
-    //    for (int i = 49, j = 0; i <= 57; ++i, ++j)
-    //        field[j] = i;
 }
 
 int checkRow(char *arr)
@@ -297,7 +295,7 @@ void checkField(void)
         else
             player2Vic++;
 
-        printf("Player \"%s\" lost! (Press Enter)", playerName[(int)playerNumberMove]);
+        printf(" Player \"%s\" lost!", playerName[(int)playerNumberMove]);
         enterPressWait();
         restartField();
     }
@@ -305,7 +303,7 @@ void checkField(void)
     if(moveCount == 9)
     {
         restartField();
-        printf(" Friendship! (Press Enter)");
+        printf(" Friendship!");
         enterPressWait();
     }
 
@@ -326,7 +324,7 @@ void undo(void)
 {
     if(undoCell == 0)
     {
-        printf(" You can't use this. (Press Enter)\n");
+        printf(" You can't use this.");
         enterPressWait();
         return;
     }
@@ -342,6 +340,7 @@ void undo(void)
 
 void enterPressWait()
 {
+    printf(" (Press Enter)");
     while (getch() != 13); // ASCII Enter code
 }
 
@@ -366,7 +365,7 @@ char AI_Move(void)
         return AI_OneSymbolBefore(_0);
 
     // Занять середину, если пуста.
-    if(level == HARD && *_5 == ' ') //(*_5 != _0 && *_5 != _X)
+    if(level == HARD && *_5 == ' ')
         return '5';
 
     // Если сейчас третий ход, а игрок поставил нолик в ячейку 2 или 4 или 6 или 8, то всё...
@@ -384,7 +383,7 @@ char AI_Move(void)
     // Занять первую пустую угловую ячейку.
     for (int i = 0; i < 9; i += 2)
     {
-        if(field[i] == ' ') //_0 && field[i] != _X)
+        if(field[i] == ' ')
             return i + 1 + '0';
     }
 
@@ -395,7 +394,6 @@ char AI_Move(void)
             return i + 1 + '0';
     }
 
-
     // Программа сюда не должена доходить.
     return '!';
 }
@@ -403,17 +401,17 @@ char AI_OneRow(char* arr, char vicSymbol)
 {
     if(*arr == vicSymbol &&
             *(arr + 1) == vicSymbol &&
-            *(arr + 2) == ' ') // != vicSymbol && *(arr + 2) != lossSymbol) // X X !X
+            *(arr + 2) == ' ')
     {
         return '3';
     }
     else if(*arr == vicSymbol &&
-            *(arr + 1) == ' ' && // != vicSymbol && *(arr + 1) != lossSymbol &&
+            *(arr + 1) == ' ' &&
             *(arr + 2) == vicSymbol) // X !X X
     {
         return '2';
     }
-    else if(*arr == ' ' && // != vicSymbol && *arr != lossSymbol &&
+    else if(*arr == ' ' &&
             *(arr + 1) == vicSymbol &&
             *(arr + 2) == vicSymbol) // !X X X
     {
@@ -430,7 +428,7 @@ char AI_OneColumn(char* arr, char vicSymbol)
     // X         1 2 3
     if(*arr == vicSymbol &&
             *(arr + 3) == vicSymbol &&
-            *(arr + 6) ==  ' ') //vicSymbol && *(arr + 6) != lossSymbol)
+            *(arr + 6) ==  ' ')
     {
         return '7';
     }
@@ -438,7 +436,7 @@ char AI_OneColumn(char* arr, char vicSymbol)
     // !X
     // X
     else if(*arr == vicSymbol &&
-            *(arr + 3) == ' ' && //!= vicSymbol && *(arr + 3) != lossSymbol &&
+            *(arr + 3) == ' ' &&
             *(arr + 6) == vicSymbol)
     {
         return '4';
@@ -446,7 +444,7 @@ char AI_OneColumn(char* arr, char vicSymbol)
     // X
     // X
     // !X
-    else if(*arr == ' ' && //!= vicSymbol && *arr != lossSymbol &&
+    else if(*arr == ' ' &&
             *(arr + 3) == vicSymbol &&
             *(arr + 6) == vicSymbol)
         return '1';
@@ -459,7 +457,7 @@ char AI_Diagonal(char vicSymbol)
     //     X
     //   X
     // !X
-    if(*_1 == ' ' && // != vicSymbol && *_1 != lossSymbol &&
+    if(*_1 == ' ' &&
             *_5 == vicSymbol &&
             *_9 == vicSymbol)
     {
@@ -469,7 +467,7 @@ char AI_Diagonal(char vicSymbol)
     //   !X
     // X
     else if(*_1 == vicSymbol &&
-            *_5 == ' ' && // != vicSymbol && *_5 != lossSymbol &&
+            *_5 == ' ' &&
             *_9 == vicSymbol)
     {
         return '5';
@@ -479,7 +477,7 @@ char AI_Diagonal(char vicSymbol)
     // X
     else if(*_1 == vicSymbol &&
             *_5 == vicSymbol &&
-            *_9 == ' ' ) //!= lossSymbol && *_9 != vicSymbol)
+            *_9 == ' ' )
     {
         return '9';
     }
@@ -488,7 +486,7 @@ char AI_Diagonal(char vicSymbol)
     //      X
     else if(*_3 == vicSymbol &&
             *_5 == vicSymbol &&
-            *_7 == ' ') //!= vicSymbol && *_7 != lossSymbol)
+            *_7 == ' ')
     {
         return '7';
     }
@@ -496,7 +494,7 @@ char AI_Diagonal(char vicSymbol)
     //   !X
     //      X
     else if(*_3 == vicSymbol &&
-            *_5 == ' ' && // != vicSymbol && *_5 != lossSymbol &&
+            *_5 == ' ' &&
             *_7 == vicSymbol)
     {
         return '5';
@@ -504,7 +502,7 @@ char AI_Diagonal(char vicSymbol)
     // X
     //   X
     //     !X
-    else if(*_3 == ' ' && // != vicSymbol && *_3 != lossSymbol &&
+    else if(*_3 == ' ' &&
             *_5 == vicSymbol &&
             *_7 == vicSymbol)
     {
@@ -559,7 +557,6 @@ void gameMode(void)
            " 1: Play with PC\n"
            " 2: Play with human\n\n");
 
-
     while(1)
     {
         char input = getch();
@@ -567,7 +564,7 @@ void gameMode(void)
         {
             mode = PC;
 
-            strcpy(playerName[0], "PC"); //  memcpy(playerName[0], "PC\0", 3);
+            strcpy(playerName[0], "PC");
             strcpy(playerName[1], "User");
 
             levelMode();
@@ -624,15 +621,15 @@ void setPlayerName(char* name)
 
     while(1)
     {
-        char buff = getch();
+        char input = getch();
 
-        if(buff == 'y' || buff == 'Y')
+        if(input == 'y' || input == 'Y')
         {
             printf(" Input name: ");
             scanf("%s", name);
             break;
         }
-        else if(buff == 'n' || buff == 'N')
+        else if(input == 'n' || input == 'N')
             break;
     }
 
