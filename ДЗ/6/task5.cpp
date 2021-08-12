@@ -28,17 +28,16 @@ void task5()
     std::cout << "Input string to find: ";
     std::cin >> findString;
 
-    size_t count = 0;
+    size_t strNumber = 1;
     while (!inFile.eof())
     {
         std::string line;
         std::getline(inFile, line);
 
-        if(line == findString)
-            count++;
+        if(line.find(findString) != std::string::npos)
+            std::cout << "Found in " << strNumber << " string." << std::endl;
+
+        strNumber++;
     }
-
-    std::cout << count << " string found." << std::endl;
-
     std::cout << "Done." << std::endl << std::endl;
 }
