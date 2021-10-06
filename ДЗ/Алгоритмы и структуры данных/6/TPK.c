@@ -10,7 +10,7 @@ int main ()
 {
     float arr[11];
 
-    for(int i = 10; i > 0; i--)
+    for(int i = 10; i >= 0; i--)
         scanf("%f", (arr + i));
 
     for (int i = 0; i < 11; i++)
