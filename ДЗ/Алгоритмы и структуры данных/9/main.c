@@ -4,6 +4,20 @@
 typedef struct Queue_unit_struct Queue_unit;
 typedef struct Queue_struct Queue;
 
+struct Queue_unit_struct
+{
+    int value;
+    int priority;
+    struct Queue_unit_struct *next;
+};
+
+struct Queue_struct
+{
+    struct Queue_unit_struct *first;
+    struct Queue_unit_struct *last;
+    size_t size;
+};
+
 Queue_unit* createQueueUnit(int value, int priority);
 Queue* createQueue();
 
@@ -13,8 +27,24 @@ void printQueue(Queue *queue);
 void push(Queue *queue, Queue_unit* current);
 void pop(Queue *queue);
 
+typedef struct Stack_struct Stack;
+
+struct Stack_struct
+{
+    char *data;
+    char* pointer;
+    size_t size;
+};
+
+Stack* createStack(size_t size);
+void clearStack(Stack *stack);
+
+void pushStack(Stack *stack, char c);
+char popStack(Stack *stack);
+
 int main()
 {
+    // Очередь
     Queue *queue = createQueue();
     Queue_unit *unit1 = createQueueUnit(1, 0);
     Queue_unit *unit2 = createQueueUnit(2, 1);
@@ -40,22 +70,71 @@ int main()
 
     free(queue);
 
+    //Стек
+    Stack *stack = createStack(10);
+
+    int a = 7;
+    while(a)
+    {
+       pushStack(stack, (a & 1) + '0');
+       a >>= 1;
+    }
+
+    while(stack->pointer > stack->data)
+        printf("%c", popStack(stack));
+
+    printf("\n");
+
+    clearStack(stack);
+    free(stack);
+
     return 0;
 }
 
-struct Queue_unit_struct
+Stack* createStack(size_t size)
 {
-    int value;
-    int priority;
-    struct Queue_unit_struct *next;
-};
+    Stack *stack = (Stack*) malloc(sizeof (Stack));
+    stack->data = calloc(size, sizeof(char));
+    stack->pointer = stack->data;
+    stack->size = size;
 
-struct Queue_struct
+    return stack;
+}
+
+void clearStack(Stack *stack)
 {
-    struct Queue_unit_struct *first;
-    struct Queue_unit_struct *last;
-    size_t size;
-};
+    stack->pointer = NULL;
+    free(stack->data);
+}
+
+void pushStack(Stack *stack, char c)
+{
+    if(stack->pointer >= (stack->data + stack->size))
+    {
+        printf("Stack full!\n");
+        return;
+    }
+
+    *stack->pointer = c;
+    stack->pointer++;
+}
+
+char popStack(Stack *stack)
+{
+    if(stack->pointer == stack->data)
+    {
+        printf("\nStack empty!\n");
+        return 0;
+    }
+    stack->pointer--;
+
+    char result = *stack->pointer;
+    *stack->pointer = '\0';
+
+    stack->size--;
+
+    return result;
+}
 
 Queue_unit *createQueueUnit(int value, int priority)
 {
