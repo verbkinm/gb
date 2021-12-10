@@ -2,6 +2,7 @@
 #define HAND_H
 
 #include <vector>
+#include <algorithm>
 
 #include "card.h"
 
