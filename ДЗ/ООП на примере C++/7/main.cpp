@@ -2,6 +2,7 @@
 #include <memory>
 
 #include "date.h"
+#include "game.h"
 
 using namespace std;
 
@@ -21,41 +22,45 @@ void swapPtr(unique_ptr<Date> &date1, unique_ptr<Date> &date2)
 
 int main()
 {
-    // Задание №1
-    unique_ptr<Date> today, date;
+//    // Задание №1
+//    unique_ptr<Date> today, date;
 
-    today = make_unique<Date>();
+//    today = make_unique<Date>();
 
-    today->setDay(6);
-    today->setMonth(12);
-    today->setYear(2021);
+//    today->setDay(6);
+//    today->setMonth(12);
+//    today->setYear(2021);
 
-    cout << *today << endl;
+//    cout << *today << endl;
 
-    date = move(today);
+//    date = move(today);
 
-    if(today == nullptr)
-        cout << "today is null" << endl;
-    if(date == nullptr)
-        cout << "date is null" << endl;
-    else
-        cout << *date << endl << endl;
+//    if(today == nullptr)
+//        cout << "today is null" << endl;
+//    if(date == nullptr)
+//        cout << "date is null" << endl;
+//    else
+//        cout << *date << endl << endl;
 
-    // Задание №2
-    unique_ptr<Date> date1, date2;
+//    // Задание №2
+//    unique_ptr<Date> date1, date2;
 
-    date1 = make_unique<Date>();
-    date2 = make_unique<Date>();
-    date2->setYear(1990);
+//    date1 = make_unique<Date>();
+//    date2 = make_unique<Date>();
+//    date2->setYear(1990);
 
-    cout << "date1 = " << *date1 << endl
-         << "date2 = " << *date2 << endl;
+//    cout << "date1 = " << *date1 << endl
+//         << "date2 = " << *date2 << endl;
 
-    cout << *compare(date1, date2) << endl;
-    swapPtr(date1, date2);
+//    cout << *compare(date1, date2) << endl;
+//    swapPtr(date1, date2);
 
-    cout << "date1 = " << *date1 << endl
-         << "date2 = " << *date2 << endl;
+//    cout << "date1 = " << *date1 << endl
+//         << "date2 = " << *date2 << endl;
+
+    // Задание №5
+    Game game({"user1", "user2"});
+    game.play();
 
     return 0;
 }
