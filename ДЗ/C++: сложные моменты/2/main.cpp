@@ -6,7 +6,7 @@
 
 using namespace std;
 
-// «‡‰‡ÌËÂ π1
+// –ó–∞–¥–∞–Ω–∏–µ ‚Ññ1
 template <typename T>
 void Swap(T &p1, T &p2)
 {
@@ -15,7 +15,7 @@ void Swap(T &p1, T &p2)
     p2 = pbuf;
 }
 
-// «‡‰‡ÌËÂ π2
+// –ó–∞–¥–∞–Ω–∏–µ ‚Ññ2
 template <typename T>
 void SortPointers(T &container)
 {
@@ -25,26 +25,27 @@ void SortPointers(T &container)
     });
 }
 
-std::string iso_8859_1_to_utf8(std::string &str)
+// –ó–∞–¥–∞–Ω–∏–µ ‚Ññ3
+bool isVowel(char ch)
 {
-    string strOut;
-    for (std::string::iterator it = str.begin(); it != str.end(); ++it)
+    ch = tolower(ch);
+    switch(ch)
     {
-        uint8_t ch = *it;
-        if (ch < 0x80) {
-            strOut.push_back(ch);
-        }
-        else {
-            strOut.push_back(0xc0 | ch >> 6);
-            strOut.push_back(0x80 | (ch & 0x3f));
-        }
+        case 'a':
+        case 'e':
+        case 'o':
+        case 'u':
+        case 'i':
+            return true;
+        break;
     }
-    return strOut;
+
+    return false;
 }
 
 int main()
 {
-// «‡‰‡ÌËÂ π1
+    // –ó–∞–¥–∞–Ω–∏–µ ‚Ññ1
     {
         int *p1 = new int(5);
         int *p2 = new int(6);
@@ -57,7 +58,7 @@ int main()
         delete p2;
     }
 
-// «‡‰‡ÌËÂ π2
+    // –ó–∞–¥–∞–Ω–∏–µ ‚Ññ2
     {
         const int VECTOR_SIZE = 10'000;
         vector<int *> vec;
@@ -70,33 +71,32 @@ int main()
             int* random_value = new int(mersenne());
             vec.push_back(random_value);
         }
+
         SortPointers(vec);
+
         for(auto &el : vec)
             delete el;
+
         vec.clear();
     }
 
-// «‡‰‡ÌËÂ π3
+    // –ó–∞–¥–∞–Ω–∏–µ ‚Ññ3
     {
-
-//        setlocale(LC_ALL, "RUS");
-//        ifstream file("text.txt");
-        ifstream file("1.txt");
-        char ch;
+        ifstream file("War and peace.txt");
+        int count = 0;
         while(!file.eof())
         {
             string str;
             getline(file, str);
-            string compstr = "Ó";
-            auto f = count_if(str.begin(), str.end(), [](const char &el)
+            count += count_if(str.begin(), str.end(), [](char ch)
             {
-                cout << el << endl;
-                return false;
+                return isVowel(ch);
             });
-//            string strUtf = iso_8859_1_to_utf8(str);
-//            cout << str << endl;
-//            file.read(&ch, 1);/
         }
+        file.close();
+
+        cout << count << endl;
     }
+
     return 0;
 }
