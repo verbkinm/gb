@@ -37,6 +37,6 @@ int main()
     copy(vecAnalog.begin(), vecAnalog.end(), ostream_iterator<float>{cout, "\n"});
 
     copy(vecAnalog.begin(), vecAnalog.end(), vecDigit.begin());
-    copy(vecDigit.begin(), vecDigit.end(), ostream_iterator<float>{cout, "\n"});
+    copy(vecDigit.begin(), vecDigit.end(), ostream_iterator<int>{cout, "\n"});
 
 }
