@@ -20,6 +20,7 @@ int main()
     vector<float> vf = {1.2, 2.6, 3.7};
     insert_sorted<float>(vf, 1.8f);
     copy(vf.begin(), vf.end(), ostream_iterator<float>{cout, " "});
+    cout << endl;
 
     //Задание №2
     const int MAX_DIGIT = 100;
@@ -39,4 +40,9 @@ int main()
     copy(vecAnalog.begin(), vecAnalog.end(), vecDigit.begin());
     copy(vecDigit.begin(), vecDigit.end(), ostream_iterator<int>{cout, "\n"});
 
+    float diff = 0;
+    for(int i = 0; i < VECTOR_SIZE; i++)
+        diff += pow((vecAnalog.at(i) - vecDigit.at(i)), 2);
+
+    cout << diff << endl;
 }
