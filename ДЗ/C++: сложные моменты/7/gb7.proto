@@ -1,0 +1,19 @@
+syntax="proto3";
+
+package gb7_proto;
+
+message FullName{
+    string name = 1;
+    string surname = 2;
+    string patronymic = 3;
+}
+
+message Student{
+    FullName fullName = 1;
+    repeated int32 valuation = 3;
+    double avrVal = 4;
+}
+
+message StudentsGroup{
+    repeated Student students = 1;
+}
