@@ -129,11 +129,12 @@ void SBomber::CheckBombsAndGround()
     const double y = pGround->GetY();
     for (size_t i = 0; i < vecBombs.size(); i++)
     {
-        if (vecBombs[i]->GetY() >= y) // Пересечение бомбы с землей
+        if (vecBombs[i]->GetY() >= y) // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         {
             pGround->AddCrater(vecBombs[i]->GetX());
             CheckDestoyableObjects(vecBombs[i]);
-            DeleteDynamicObj(vecBombs[i]);
+            CommandDeleteDynObj delDyn(vecBombs[i], vecDynamicObj);
+            delDyn.Execute();
         }
     }
 
@@ -151,36 +152,39 @@ void SBomber::CheckDestoyableObjects(Bomb * pBomb)
         if (vecDestoyableObjects[i]->isInside(x1, x2))
         {
             score += vecDestoyableObjects[i]->GetScore();
-            DeleteStaticObj(vecDestoyableObjects[i]);
+
+            CommandDeleteStatObj statObj(vecDestoyableObjects[i], vecStaticObj);
+            statObj.Execute();
+//            DeleteStaticObj(vecDestoyableObjects[i]);
         }
     }
 }
 
-void SBomber::DeleteDynamicObj(DynamicObject* pObj)
-{
-    auto it = vecDynamicObj.begin();
-    for (; it != vecDynamicObj.end(); it++)
-    {
-        if (*it == pObj)
-        {
-            vecDynamicObj.erase(it);
-            break;
-        }
-    }
-}
+//void SBomber::DeleteDynamicObj(DynamicObject* pObj)
+//{
+//    auto it = vecDynamicObj.begin();
+//    for (; it != vecDynamicObj.end(); it++)
+//    {
+//        if (*it == pObj)
+//        {
+//            vecDynamicObj.erase(it);
+//            break;
+//        }
+//    }
+//}
 
-void SBomber::DeleteStaticObj(GameObject* pObj)
-{
-    auto it = vecStaticObj.begin();
-    for (; it != vecStaticObj.end(); it++)
-    {
-        if (*it == pObj)
-        {
-            vecStaticObj.erase(it);
-            break;
-        }
-    }
-}
+//void SBomber::DeleteStaticObj(GameObject* pObj)
+//{
+//    auto it = vecStaticObj.begin();
+//    for (; it != vecStaticObj.end(); it++)
+//    {
+//        if (*it == pObj)
+//        {
+//            vecStaticObj.erase(it);
+//            break;
+//        }
+//    }
+//}
 
 vector<DestroyableGroundObject*> SBomber::FindDestoyableGroundObjects() const
 {
@@ -229,6 +233,11 @@ vector<Bomb*> SBomber::FindAllBombs() const
 
     for (size_t i = 0; i < vecDynamicObj.size(); i++)
     {
+        auto id = typeid(*vecDynamicObj[i]).name();
+        if(id == "13BombDecorator")
+        {
+
+        }
         Bomb* pBomb = dynamic_cast<Bomb*>(vecDynamicObj[i]);
         if (pBomb != nullptr)
         {
@@ -293,13 +302,16 @@ void SBomber::ProcessKBHit()
         break;
 
     case 'b':
-        DropBomb();
+    {
+        CommandDropBomb dropBomb(FindPlane(), vecDynamicObj, bombsNumber, score, _proxyLog);
+        dropBomb.Execute();
         break;
-
+    }
     case 'B':
-        DropBomb();
-        break;
-
+    {
+        CommandDropBombDecorator dropBomb(FindPlane(), vecDynamicObj, bombsNumber, score, _proxyLog);
+        dropBomb.Execute();
+    }
     default:
         break;
     }
@@ -346,24 +358,7 @@ void SBomber::TimeFinish()
     _proxyLog.WriteToLog(string(__FUNCTION__) + " deltaTime = ", (int)deltaTime);
 }
 
-void SBomber::DropBomb()
+ProxyLogger &SBomber::proxyLog()
 {
-    if (bombsNumber > 0)
-    {
-        _proxyLog.WriteToLog(string(__FUNCTION__) + " was invoked");
-
-        Plane* pPlane = FindPlane();
-        double x = pPlane->GetX() + 4;
-        double y = pPlane->GetY() + 2;
-
-        Bomb* pBomb = new Bomb;
-        pBomb->SetDirection(0.3, 1);
-        pBomb->SetSpeed(2);
-        pBomb->SetPos(x, y);
-        pBomb->SetWidth(SMALL_CRATER_SIZE);
-
-        vecDynamicObj.push_back(pBomb);
-        bombsNumber--;
-        score -= Bomb::BombCost;
-    }
+    return _proxyLog;
 }

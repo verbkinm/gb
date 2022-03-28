@@ -7,12 +7,16 @@
 #include "Bomb.h"
 #include "Ground.h"
 #include "Tank.h"
-#include "proxylogger.h"
+
+#include "Patterns/proxylogger.h"
+#include "Patterns/commanddeletestatobj.h"
+#include "Patterns/commanddeletedynobj.h"
+#include "Patterns/commanddropbomb.h"
+#include "Patterns/commanddropbombdecorator.h"
 
 class SBomber
 {
 public:
-
     SBomber();
     ~SBomber();
     
@@ -26,22 +30,19 @@ public:
     void MoveObjects();
     void CheckObjects();
 
+    ProxyLogger &proxyLog();
+
 private:
 
     void CheckPlaneAndLevelGUI();
     void CheckBombsAndGround();
     void __fastcall CheckDestoyableObjects(Bomb* pBomb);
 
-    void __fastcall DeleteDynamicObj(DynamicObject * pBomb);
-    void __fastcall DeleteStaticObj(GameObject* pObj);
-
     Ground * FindGround() const;
     Plane * FindPlane() const;
     LevelGUI * FindLevelGUI() const;
     std::vector<DestroyableGroundObject*> FindDestoyableGroundObjects() const;
     std::vector<Bomb*> FindAllBombs() const;
-
-    void DropBomb();
 
     std::vector<DynamicObject*> vecDynamicObj;
     std::vector<GameObject*> vecStaticObj;

@@ -1,10 +1,9 @@
-﻿
-#include <conio.h>
+﻿#include <conio.h>
 #include <thread>
 
 #include "SBomber.h"
 #include "MyTools.h"
-#include "proxylogger.h"
+#include "Patterns/proxylogger.h"
 
 using namespace std;
 
@@ -12,11 +11,8 @@ using namespace std;
 
 int main(void)
 {
-    ProxyLogger proxyLog;
-    proxyLog.OpenLogFile("log.txt");
-//    LogSingleton::getInstance().OpenLogFile("log.txt");
-
     SBomber game;
+    game.proxyLog().OpenLogFile("log.txt");
 
     do {
         game.TimeStart();
@@ -26,7 +22,7 @@ int main(void)
             game.ProcessKBHit();
         }
 
-        std::this_thread::sleep_for(50ms);
+        std::this_thread::sleep_for(300ms);
         MyTools::ClrScr();
 
         game.DrawFrame();
@@ -37,8 +33,7 @@ int main(void)
 
     } while (!game.GetExitFlag());
 
-    proxyLog.CloseLogFile();
-//    LogSingleton::getInstance().CloseLogFile();
+    game.proxyLog().CloseLogFile();
 
     return 0;
 }
