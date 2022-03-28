@@ -1,7 +1,5 @@
 #include "logsingleton.h"
 
-
-
 void __fastcall LogSingleton::OpenLogFile(const std::string& FN)
 {
     logOut.open(FN, std::ios_base::out);

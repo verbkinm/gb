@@ -8,7 +8,7 @@
 #include "Ground.h"
 #include "Tank.h"
 #include "House.h"
-#include "logsingleton.h"
+
 
 using namespace std;
 using namespace MyTools;
@@ -23,7 +23,7 @@ SBomber::SBomber()
     fps(0),
     score(0)
 {
-    LogSingleton::getInstance().WriteToLog(string(__FUNCTION__) + " was invoked");
+    _proxyLog.WriteToLog(string(__FUNCTION__) + " was invoked");
 
     Plane* p = new Plane;
     p->SetDirection(1, 0.1);
@@ -95,7 +95,7 @@ SBomber::~SBomber()
 
 void SBomber::MoveObjects()
 {
-    LogSingleton::getInstance().WriteToLog(string(__FUNCTION__) + " was invoked");
+    _proxyLog.WriteToLog(string(__FUNCTION__) + " was invoked");
 
     for (size_t i = 0; i < vecDynamicObj.size(); i++)
     {
@@ -108,7 +108,7 @@ void SBomber::MoveObjects()
 
 void SBomber::CheckObjects()
 {
-    LogSingleton::getInstance().WriteToLog(string(__FUNCTION__) + " was invoked");
+    _proxyLog.WriteToLog(string(__FUNCTION__) + " was invoked");
 
     CheckPlaneAndLevelGUI();
     CheckBombsAndGround();
@@ -276,7 +276,7 @@ void SBomber::ProcessKBHit()
         c = _getch();
     }
 
-    LogSingleton::getInstance().WriteToLog(string(__FUNCTION__) + " was invoked. key = ", c);
+    _proxyLog.WriteToLog(string(__FUNCTION__) + " was invoked. key = ", c);
 
     switch (c) {
 
@@ -307,7 +307,7 @@ void SBomber::ProcessKBHit()
 
 void SBomber::DrawFrame()
 {
-    LogSingleton::getInstance().WriteToLog(string(__FUNCTION__) + " was invoked");
+    _proxyLog.WriteToLog(string(__FUNCTION__) + " was invoked");
 
     for (size_t i = 0; i < vecDynamicObj.size(); i++)
     {
@@ -333,7 +333,7 @@ void SBomber::DrawFrame()
 
 void SBomber::TimeStart()
 {
-    LogSingleton::getInstance().WriteToLog(string(__FUNCTION__) + " was invoked");
+    _proxyLog.WriteToLog(string(__FUNCTION__) + " was invoked");
     startTime = GetTickCount64();
 }
 
@@ -343,14 +343,14 @@ void SBomber::TimeFinish()
     deltaTime = uint16_t(finishTime - startTime);
     passedTime += deltaTime;
 
-    LogSingleton::getInstance().WriteToLog(string(__FUNCTION__) + " deltaTime = ", (int)deltaTime);
+    _proxyLog.WriteToLog(string(__FUNCTION__) + " deltaTime = ", (int)deltaTime);
 }
 
 void SBomber::DropBomb()
 {
     if (bombsNumber > 0)
     {
-        LogSingleton::getInstance().WriteToLog(string(__FUNCTION__) + " was invoked");
+        _proxyLog.WriteToLog(string(__FUNCTION__) + " was invoked");
 
         Plane* pPlane = FindPlane();
         double x = pPlane->GetX() + 4;

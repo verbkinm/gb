@@ -4,7 +4,7 @@
 
 #include "SBomber.h"
 #include "MyTools.h"
-#include "logsingleton.h"
+#include "proxylogger.h"
 
 using namespace std;
 
@@ -12,7 +12,9 @@ using namespace std;
 
 int main(void)
 {
-    LogSingleton::getInstance().OpenLogFile("log.txt");
+    ProxyLogger proxyLog;
+    proxyLog.OpenLogFile("log.txt");
+//    LogSingleton::getInstance().OpenLogFile("log.txt");
 
     SBomber game;
 
@@ -35,7 +37,8 @@ int main(void)
 
     } while (!game.GetExitFlag());
 
-    LogSingleton::getInstance().CloseLogFile();
+    proxyLog.CloseLogFile();
+//    LogSingleton::getInstance().CloseLogFile();
 
     return 0;
 }
