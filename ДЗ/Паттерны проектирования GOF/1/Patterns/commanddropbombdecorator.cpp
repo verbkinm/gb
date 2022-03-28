@@ -16,10 +16,10 @@ void CommandDropBombDecorator::Execute()
         double y = _plane->GetY() + 2;
 
         BombDecorator* pBomb = new BombDecorator;
-        pBomb->SetDirection(0.3, 1);
-        pBomb->SetSpeed(2);
-        pBomb->SetPos(x, y);
-        pBomb->SetWidth(SMALL_CRATER_SIZE);
+        pBomb->bomb().SetDirection(0.3, 1);
+        pBomb->bomb().SetSpeed(2);
+        pBomb->bomb().SetPos(x, y);
+        pBomb->bomb().SetWidth(SMALL_CRATER_SIZE);
 
         _vecDynamicObj.push_back(pBomb);
         _bombsNumber--;

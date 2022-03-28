@@ -155,7 +155,6 @@ void SBomber::CheckDestoyableObjects(Bomb * pBomb)
 
             CommandDeleteStatObj statObj(vecDestoyableObjects[i], vecStaticObj);
             statObj.Execute();
-//            DeleteStaticObj(vecDestoyableObjects[i]);
         }
     }
 }
@@ -233,12 +232,12 @@ vector<Bomb*> SBomber::FindAllBombs() const
 
     for (size_t i = 0; i < vecDynamicObj.size(); i++)
     {
-        auto id = typeid(*vecDynamicObj[i]).name();
+        Bomb* pBomb = nullptr;
+        string id = typeid(*vecDynamicObj[i]).name();
         if(id == "13BombDecorator")
-        {
-
-        }
-        Bomb* pBomb = dynamic_cast<Bomb*>(vecDynamicObj[i]);
+            pBomb = &dynamic_cast<BombDecorator*>(vecDynamicObj[i])->bomb();
+        else if(id == "4Bomb")
+            pBomb = dynamic_cast<Bomb*>(vecDynamicObj[i]);
         if (pBomb != nullptr)
         {
             vecBombs.push_back(pBomb);

@@ -6,23 +6,25 @@
 #include "Bomb.h"
 #include "MyTools.h"
 
-class BombDecorator : public Bomb
+class BombDecorator : public DynamicObject
 {
 private:
-//    Bomb _bomb;
+    Bomb _bomb;
+
 public:
-    BombDecorator();
+    BombDecorator() = default;
 
     // DynamicObject interface
-//    void Move(uint16_t time) override;
+    void Move(uint16_t time) override;
 
     // GameObject interface
     void Draw() const override;
 
-//    void SetPos(double nx, double ny) override;
-//    double GetY() const override;
-//    double GetX() const override;
-//    void SetWidth(uint16_t widthN) override;
-//    uint16_t GetWidth() const override;
+    void SetPos(double nx, double ny) override;
+    double GetY() const override;
+    double GetX() const override;
+    void SetWidth(uint16_t widthN) override;
+    uint16_t GetWidth() const override;
+    Bomb &bomb();
 };
 
