@@ -25,8 +25,6 @@ public:
     void MoveObjects();
     void CheckObjects();
 
-    std::queue<std::string> message;
-
 private:
 
     void CheckPlaneAndLevelGUI();

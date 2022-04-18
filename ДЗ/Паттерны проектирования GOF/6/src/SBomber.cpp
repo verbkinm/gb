@@ -324,12 +324,6 @@ void SBomber::DrawFrame() {
   fps++;
 
   FindLevelGUI()->SetParam(passedTime, fps, bombsNumber, score);
-
-  if(message.size())
-  {
-      std::cout << "Message: " << message.front();
-      message.pop();
-  }
 }
 
 void SBomber::TimeStart() {

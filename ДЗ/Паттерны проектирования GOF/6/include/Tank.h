@@ -13,17 +13,6 @@ class Tank : public DestroyableGroundObject
 {
 public:
     Tank(Colleague *collegue) : _collegue(collegue){}
-    ~Tank()
-    {
-//        if(_collegue)
-//        {
-//            auto it = std::find(_collegue->pMediator->v.begin(), _collegue->pMediator->v.end(), _collegue);
-//            if(it != _collegue->pMediator->v.end())
-//                _collegue->pMediator->v.erase(it);
-
-//            delete _collegue;
-//        }
-    }
 
     bool  isInside(double x1, double x2) const override;
 

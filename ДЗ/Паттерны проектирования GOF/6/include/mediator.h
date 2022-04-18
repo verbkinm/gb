@@ -13,7 +13,7 @@ public:
     virtual void BeNotified(std::string info) = 0;
     virtual void SomeActions() = 0;
     virtual ~Colleague(){};
-    static Mediator* pMediator;
+    Mediator* pMediator;
 
     double _x, _y;
 };
