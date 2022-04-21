@@ -10,7 +10,6 @@
 
 const int BUFFER_SIZE = 256;
 char buffer[BUFFER_SIZE];
-char message[BUFFER_SIZE];
 
 int main(int argc, char const *argv[])
 {
@@ -44,13 +43,13 @@ int main(int argc, char const *argv[])
         return EXIT_FAILURE;
     }
 
-    while(strcmp(message, "exit") != 0)
+    while(strcmp(buffer, "exit") != 0)
     {
         std::cout << "<< ";
-        std::cin >> message;
+        std::cin >> buffer;
 
-        send(sock, message, sizeof(message), 0);
-        recv(sock, buffer, sizeof(message), 0);
+        send(sock, buffer, sizeof(buffer), 0);
+        recv(sock, buffer, sizeof(buffer), 0);
 
         std::cout << ">> " << buffer << '\n';
     }
