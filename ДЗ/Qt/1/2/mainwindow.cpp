@@ -49,10 +49,10 @@ void MainWindow::calculate()
     b = ui->spinBox_B->value();
     alpha = ui->spinBox_Alpha->value();
 
-    if (ui->radioButton_radians->isChecked())
-        alpha = alpha * 57.29577951308;
+    if (ui->radioButton_degrees->isChecked())
+        alpha = alpha * M_PI / 180.0;
 
-    c = std::sqrt(a*a + b*b - 2 * a * b * std::cos(alpha));
+    c = std::sqrt(std::pow(a, 2) + std::pow(b, 2) - 2 * a * b * std::cos(alpha));
 
     _result->setPlainText(QString::number(c));
 }
