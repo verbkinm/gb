@@ -1,5 +1,5 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource prefix="/form_sign_up">
-<file alias="main.qml">/home/user/Qt/myProg/gb/ДЗ/Мобильная разработка/2/1/form_sign_up/main.qml</file>
+<file alias="main.qml">/home/user/gb/gb/ДЗ/Мобильная разработка/2/1/form_sign_up/main.qml</file>
 </qresource>
 </RCC>

@@ -37,7 +37,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = form_sign_up1.0.0
-DISTDIR = /home/user/Qt/myProg/gb/ДЗ/Мобильная\ разработка/2/1/build-form_sign_up-Desktop_Qt_6_2_2_GCC_64bit-Debug/.tmp/form_sign_up1.0.0
+DISTDIR = /home/user/gb/gb/ДЗ/Мобильная\ разработка/2/1/build-form_sign_up-Desktop_Qt_6_2_2_GCC_64bit-Debug/.tmp/form_sign_up1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/home/user/Qt/6.2.2/gcc_64/lib -Wl,-rpath-link,/home/user/Qt/6.2.2/gcc_64/lib
 LIBS          = $(SUBLIBS) /home/user/Qt/6.2.2/gcc_64/lib/libQt6Quick.so /home/user/Qt/6.2.2/gcc_64/lib/libQt6OpenGL.so /home/user/Qt/6.2.2/gcc_64/lib/libQt6Gui.so /home/user/Qt/6.2.2/gcc_64/lib/libQt6QmlModels.so /home/user/Qt/6.2.2/gcc_64/lib/libQt6Qml.so -pthread /home/user/Qt/6.2.2/gcc_64/lib/libQt6Network.so /home/user/Qt/6.2.2/gcc_64/lib/libQt6Core.so -lpthread -lGL   
@@ -68,8 +68,6 @@ DIST          = /home/user/Qt/6.2.2/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_concurrent.pri \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_concurrent_private.pri \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_core.pri \
-		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_core5compat.pri \
-		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_core5compat_private.pri \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_core_private.pri \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_dbus.pri \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_dbus_private.pri \
@@ -149,8 +147,6 @@ DIST          = /home/user/Qt/6.2.2/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_quicktestutilsprivate_private.pri \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_quickwidgets.pri \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_quickwidgets_private.pri \
-		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_serialport.pri \
-		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_serialport_private.pri \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_sql.pri \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_sql_private.pri \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_svg.pri \
@@ -176,7 +172,7 @@ DIST          = /home/user/Qt/6.2.2/gcc_64/mkspecs/features/spec_pre.prf \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/features/qt_config.prf \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/features/spec_post.prf \
-		/home/user/.qmake.stash \
+		../form_sign_up/.qmake.stash \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/features/toolchain.prf \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/features/default_pre.prf \
@@ -221,8 +217,6 @@ Makefile: ../form_sign_up/form_sign_up.pro /home/user/Qt/6.2.2/gcc_64/mkspecs/li
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_concurrent.pri \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_concurrent_private.pri \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_core.pri \
-		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_core5compat.pri \
-		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_core5compat_private.pri \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_core_private.pri \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_dbus.pri \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_dbus_private.pri \
@@ -302,8 +296,6 @@ Makefile: ../form_sign_up/form_sign_up.pro /home/user/Qt/6.2.2/gcc_64/mkspecs/li
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_quicktestutilsprivate_private.pri \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_quickwidgets.pri \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_quickwidgets_private.pri \
-		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_serialport.pri \
-		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_serialport_private.pri \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_sql.pri \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_sql_private.pri \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_svg.pri \
@@ -329,7 +321,7 @@ Makefile: ../form_sign_up/form_sign_up.pro /home/user/Qt/6.2.2/gcc_64/mkspecs/li
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/features/qt_config.prf \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/linux-g++/qmake.conf \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/features/spec_post.prf \
-		/home/user/.qmake.stash \
+		.qmake.stash \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/features/exclusive_builds.prf \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/features/toolchain.prf \
 		/home/user/Qt/6.2.2/gcc_64/mkspecs/features/default_pre.prf \
@@ -372,8 +364,6 @@ Makefile: ../form_sign_up/form_sign_up.pro /home/user/Qt/6.2.2/gcc_64/mkspecs/li
 /home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_concurrent.pri:
 /home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_concurrent_private.pri:
 /home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_core.pri:
-/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_core5compat.pri:
-/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_core5compat_private.pri:
 /home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_core_private.pri:
 /home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_dbus.pri:
 /home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_dbus_private.pri:
@@ -453,8 +443,6 @@ Makefile: ../form_sign_up/form_sign_up.pro /home/user/Qt/6.2.2/gcc_64/mkspecs/li
 /home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_quicktestutilsprivate_private.pri:
 /home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_quickwidgets.pri:
 /home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_quickwidgets_private.pri:
-/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_serialport.pri:
-/home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_serialport_private.pri:
 /home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_sql.pri:
 /home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_sql_private.pri:
 /home/user/Qt/6.2.2/gcc_64/mkspecs/modules/qt_lib_svg.pri:
@@ -480,7 +468,7 @@ Makefile: ../form_sign_up/form_sign_up.pro /home/user/Qt/6.2.2/gcc_64/mkspecs/li
 /home/user/Qt/6.2.2/gcc_64/mkspecs/features/qt_config.prf:
 /home/user/Qt/6.2.2/gcc_64/mkspecs/linux-g++/qmake.conf:
 /home/user/Qt/6.2.2/gcc_64/mkspecs/features/spec_post.prf:
-/home/user/.qmake.stash:
+.qmake.stash:
 /home/user/Qt/6.2.2/gcc_64/mkspecs/features/exclusive_builds.prf:
 /home/user/Qt/6.2.2/gcc_64/mkspecs/features/toolchain.prf:
 /home/user/Qt/6.2.2/gcc_64/mkspecs/features/default_pre.prf:
@@ -535,6 +523,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) $(TARGET) 
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
