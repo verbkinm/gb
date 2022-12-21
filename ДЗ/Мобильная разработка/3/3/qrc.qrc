@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>img/литературное чтение.jpeg</file>
+        <file>img/математика.jpeg</file>
+        <file>img/азбука.jpg</file>
+        <file>img/литературное чтение 2.jpeg</file>
+        <file>img/русский язык 2.jpeg</file>
+        <file>img/технология 2.jpeg</file>
+    </qresource>
+</RCC>
